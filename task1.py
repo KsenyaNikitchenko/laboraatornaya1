@@ -20,4 +20,21 @@ def nsimplenums(x):
     return n
 
 x=int(input("Введите число: "))
-print(nsimplenums(x))
+print("Количество четных чисел, не взаимно простых с данным, равно",nsimplenums(x))
+
+print("Функция 2. Найти максимальную цифру числа, не делящуюся на 3.")
+
+def numbernot3(x):
+    tmax=-1
+    while(x>0):
+        t=x%10
+        if(t%3!=0 and tmax <t):
+            tmax=t
+        x//=10
+    return tmax
+
+x=int(input("Введите число: "))
+if(numbernot3(x)!=-1):
+    print("Максимальная цифра числа, не делящаяся на 3, равна ", numbernot3(x))
+else:
+    print("В данном числе все цифры делятся на 3")
