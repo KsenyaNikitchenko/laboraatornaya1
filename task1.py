@@ -33,6 +33,40 @@ def numbernot3(x):
         x//=10
     return tmax
 
+print("Функция 3. Найти произведение максимального числа, не взаимно простого с данным,\nне делящегося на наименьший делитель исходно числа, и суммы цифр числа, меньших 5.")
+
+def minod(x):
+    tmin=1
+    i=2
+    while (i<x):
+        if (x%i==0):
+            tmin=i
+            break
+        i+=1
+    return tmin
+
+def number(x):
+    t=x
+    i=x
+    n=minod(x)
+    while i>0:
+        if (maxod(x,i)!=1 and i%n!=0):
+            t=i
+            break
+        i-=1
+    return t
+
+def sum5(x):
+    sum=0
+    while (x!=0):
+        if(x%10<5):
+            sum+=x%10
+        x//=10
+    return sum
+
+x=int(input("Введите число: "))
+print("Произведение равно ",x*number(x))
+print("Сумма цифр в произведении, меньших 5, равна ",sum5(x*number(x)))
 x=int(input("Введите число: "))
 if(numbernot3(x)!=-1):
     print("Максимальная цифра числа, не делящаяся на 3, равна ", numbernot3(x))
