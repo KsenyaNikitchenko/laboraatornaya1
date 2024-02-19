@@ -74,3 +74,14 @@ for i in range(n):
     mas[i]=randint(-10,10)
 print(mas)
 print("Отсортированный массив",sort(mas))
+
+def suminlist(mas):
+    n=0
+    for i in range(len(mas)):
+        for j in range(i+1,len(mas),+1):
+            if(i!=j and mas[i]+mas[j] in mas):
+                n+=1
+    return n
+print("58. Для введенного списка вывести количество элементов, которые могут быть получены как сумма двух любых других элементов списка.")
+m=list(map(int,input("Введите список чисел через пробел: ").split()))
+print("Количество элементов, которые являются суммой 2х других элементов, равно",suminlist(m))
