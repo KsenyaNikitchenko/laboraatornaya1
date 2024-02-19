@@ -21,6 +21,27 @@ for i in range(n):
 print(mas2)
 print("Количество совпадающих элементов равно ",sovpad(mas1,mas2))
 
+def mininrange(mas,a,b):
+    mas.sort()
+    min=mas[-1]
+    for i in range(len(mas)):
+        if(a<=mas[i]<=b and mas[i]<=min):
+            min =mas[i]
+    if(min==mas[-1] and not a<=min<=b):
+        return 0
+    else:
+        return mas.count(min)
+
+print("22. Дан целочисленный массив и интервал a..b. Необходимо найти количество минимальных элементов в этом интервале.")
+a=int(input("Введите левую границу отрезка "))
+b=int(input("Введите правую границу отрезка "))
+n=int(input("Введите количество элементов массива "))
+mas=[0]*n
+for i in range(n):
+    mas[i]=randint(-10,10)
+print(mas)
+print("Количество минимальных элементов в интервале ",mininrange(mas,a,b))
+
 def inrange(mas,a,b):
     inrange=[]
     for i in range(len(mas)):
