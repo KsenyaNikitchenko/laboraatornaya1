@@ -2,6 +2,24 @@ from random import randint
 N=10
 print("Задание 15-19. Вариант ",(N-1)%12+1)
 
+def sovpad(x,y):
+    n=0
+    for i in range(len(x)):
+        if(y.count(x[i])!=0):
+            n+=1
+    return n
+print("10. Даны два массива. Необходимо найти количество совпадающих по значению элементов.")
+n=int(input("Введите количество элементов первого массива "))
+mas1=[0]*n
+for i in range(n):
+    mas1[i]=randint(-10,10)
+print(mas1)
+n=int(input("Введите количество элементов первого массива "))
+mas2=[0]*n
+for i in range(n):
+    mas2[i]=randint(-10,10)
+print(mas2)
+print("Количество совпадающих элементов равно ",sovpad(mas1,mas2))
 
 def inrange(mas,a,b):
     inrange=[]
@@ -17,4 +35,4 @@ mas=[0]*n
 for i in range(n):
     mas[i]=randint(-10,10)
 print(mas)
-print(inrange(mas,a,b))
+print("Количество совпадающих элементов равно ",inrange(mas,a,b))
