@@ -36,3 +36,20 @@ for i in range(n):
     mas[i]=randint(-10,10)
 print(mas)
 print("Количество совпадающих элементов равно ",inrange(mas,a,b))
+
+def sort(x):
+    masp=[]
+    maso=[]
+    for i in range(len(mas)):
+        if(mas[i]>=0):
+            masp.append(mas[i])
+        else:
+            maso.append(mas[i])
+    return masp+maso
+print("46. Дан целочисленный массив. Необходимо вывести вначале его положительные элементы, а затем – отрицательные.")
+n=int(input("Введите количество элементов массива "))
+mas=[0]*n
+for i in range(n):
+    mas[i]=randint(-10,10)
+print(mas)
+print("Отсортированный массив",sort(mas))
