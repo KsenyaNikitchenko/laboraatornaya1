@@ -19,6 +19,47 @@ for i in range(n):
 print(slist)
 print("Отсортированный список:",sorted(slist,key=razn))
 
+
+print("""5. В порядке увеличения квадратичного отклонения частоты встречаемости самого часто встречаемого
+в строке символа от частоты его встречаемости в текстах на этом алфавите.""")
+
+def element_in_string(s):
+    alpha=""
+    counteleminstr=0
+    for i in s:
+        if(s.count(i)>counteleminstr):
+            alpha=i
+            counteleminstr=s.count(i)
+    return alpha
+def elements_in_text(text):
+    alpha=""
+    elements={}
+    for i in text:
+        alpha=element_in_string(i)
+        if(alpha not in elements):
+            elements[alpha]=i.count(alpha)
+        else:
+            elements[alpha]+=i.count(alpha)
+    return elements
+
+def deviation(string,text):
+    element=element_in_string(string)
+    countelintext=elements_in_text(text)[element]
+    deviation=((string.count(element)-countelintext)**2)**0.5
+    return deviation
+
+def sort_by_frequency(text):
+    for i in range(len(text)-1):
+        for j in range(len(text)-i-1):
+            if(deviation(text[j],text)>deviation(text[j+1],text)):
+                text[j],text[j+1]=text[j+1],text[j]
+    return text
+
+spisok=["Hello world","I am bobr","apple banana kiwi melon","Alla Bob Jon Ivan"]
+print("Изначальный список ",spisok)
+print("Отсортированный список ",sort_by_frequency(spisok))
+
+
 def max_w(s):
     max_weigh=0
     for i in range(0,len(s),+3):
