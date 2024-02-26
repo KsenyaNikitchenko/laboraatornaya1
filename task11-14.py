@@ -60,6 +60,38 @@ print("Изначальный список ",spisok)
 print("Отсортированный список ",sort_by_frequency(spisok))
 
 
+print("""9. В порядке увеличения квадратичного отклонения между наибольшим ASCII-кодом символа строки и максимальной
+разницы в ASCII-кодах пар зеркально расположенных символов строки (относительно ее середины).""")
+
+def max_ASCII(stroka):
+    maxcod=0
+    for i in stroka:
+        if(ord(i)>=maxcod):
+            maxcod=ord(i)
+    return maxcod
+
+def max_dif_elements(stroka):
+    max_difference=0
+    for i in range(len(stroka)//2):
+        if(abs(ord(stroka[i])-ord(stroka[-i-1]))>max_difference):
+            max_difference=abs(ord(stroka[i])-ord(stroka[-i-1]))
+    if(len(stroka)%2!=0):
+        if(ord(stroka[len(stroka)//2])>max_difference):
+            max_difference=ord(stroka[len(stroka)//2])
+    return max_difference
+
+def deviation_ASCII_and_dif_elements(stroka):
+    deviation=((max_ASCII(stroka)-max_dif_elements(stroka))**2)**0.5
+    return deviation
+
+def sort_by_ASCII(spisok):
+    return sorted(spisok,key=deviation_ASCII_and_dif_elements)
+
+spisok=["It was sunny yesterday","Hello world","Today is Febryary 26th","Soring is in 3 days","Alla Bob Jon Ivan"]
+print("Изначальный список ",spisok)
+print("Отсортированный список ",sort_by_ASCII(spisok))
+
+
 print("""11. В порядке квадратичного отклонения дисперсии максимального среднего веса ASCII-кода тройки 
       символов в строке от максимального среднего веса ASCII-кода тройки символов в первой строке.""")
 
