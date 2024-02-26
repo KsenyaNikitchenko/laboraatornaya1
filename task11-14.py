@@ -60,22 +60,29 @@ print("Изначальный список ",spisok)
 print("Отсортированный список ",sort_by_frequency(spisok))
 
 
-def max_w(s):
-    max_weigh=0
-    for i in range(0,len(s),+3):
-        small=s[i:i+3]
-        n=sum(ord(j) for j in small)/3
-        if(n>=max_weigh):
-            max_weigh=n
-    return max_weigh
-def otkl(s):
-    return max_w(s[0])-max_w(s[1])
 print("""11. В порядке квадратичного отклонения дисперсии максимального среднего веса ASCII-кода тройки 
       символов в строке от максимального среднего веса ASCII-кода тройки символов в первой строке.""")
-n=int(input("Введите количество элементов списка "))
-slist=[]
-for i in range(n):
-    slist.append(input())
-for i in slist:
-    print(i, max_w(i))
-print("Отсортированный список:",sorted(slist,key=max_w))
+
+def max_weight_triple(stroka):
+    maxweight=0
+    for i in range(0,len(stroka),+3):
+            small=stroka[i:i+3]
+            weightsmall=sum(ord(j) for j in small)/len(small)
+            if(weightsmall>=maxweight):
+                maxweight=weightsmall
+    return maxweight
+
+def deviation_weight_triple(stroka,text):
+    deviation=((max_weight_triple(stroka)-max_weight_triple(text[0]))**2)**0.5
+    return deviation
+
+def sort_by_weight_triple(text):
+    for i in range(len(text)-1):
+        for j in range(len(text)-i-1):
+            if(deviation_weight_triple(text[j],text)>deviation_weight_triple(text[j+1],text)):
+                text[j],text[j+1]=text[j+1],text[j]
+    return text
+
+spisok=["It was sunny yesterday","Hello world","Today is Febryary 26th","Soring is in 3 days","Alla Bob Jon Ivan"]
+print("Изначальный список ",spisok)
+print("Отсортированный список ",sort_by_weight_triple(spisok))
